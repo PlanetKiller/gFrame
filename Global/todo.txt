@@ -1,0 +1,31 @@
+TODO
+(movement)
+Walking (kinematic):
+#line_move(KeyString, Vec3):
+	var ret = false
+	if keystring:
+		move Vec3
+		ret = true
+	return ret
+
+
+#line_move_aug(KeyString, Vec3)
+#mouse_rot(event, Vec3)
+#cmouse_rot_cam(event, Vec3, Cam)
+key_rot(KeyString, Vec3)
+#gravity(ColRay, FallMod)
+#jump(ColRay, Speed)
+fly(ColRay, FlyFlag, Speed)
+warp(Vec3)
+
+Inventory:
+#inv_gen(x,y)
+#pickup
+#swap
+#get_held
+get_res(preloader, resname)
+#set_inventory(massdata)
+#get_inventory()
+
+
+
