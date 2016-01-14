@@ -1,6 +1,11 @@
 
 extends Node
 
+#PlantKiller 1-12-2016 Movement module
+# can be used to quickly create player controls
+# mainly for kinematic movement, rigid movement planned
+# Base AI planned for another script
+
 # member variables here, example:
 # var a=2
 # var b="textvar"
@@ -27,13 +32,12 @@ func line_move_aug(Target, KeyString, Vec3):
 	
 
 	
-func fall(JumpRay, Target, FallSpeed, MaxSpeed):
+func fall(JumpRay, Target, FallSpeed):
 	var CanJump = false
 	JumpRay.add_exception(Target)
 	if(!JumpRay.is_colliding()):
 		CanJump = false
-		if(FallAcc < MaxSpeed):
-			FallAcc-=FallSpeed
+		FallAcc-=FallSpeed
 	if(JumpRay.is_colliding()):
 		FallAcc = 0
 		#print(JumpRay.get_collider().get_name())
@@ -52,6 +56,7 @@ func jump(JumpRay, Target, JumpBoost, KeyString):
 			
 	pass
 	
+	
 func jump_aug(JumpRay, Target, JumpBoost, KeyString):
 	JumpRay.add_exception(Target)
 	if(Input.is_action_pressed(KeyString)):
@@ -60,15 +65,21 @@ func jump_aug(JumpRay, Target, JumpBoost, KeyString):
 			
 	pass
 	
+func rigid_jump(Target, JumpBoost, KeyString):
+	if(Input.is_action_pressed(KeyString)):
+		Target.set_linear_velocity(Vector3(0, JumpBoost, 0))
+	
+	pass
+	
 func mouse_rot(e, Target, Sensitivity):
 	var rot = Target.get_rotation()
 	#yaw = fmod(yaw - event.relative_x * view_sensitivity, 360)
-	var newrot = Vector3(0,1,0)
-	var rez = OS.get_window_size()[0]/100
+	#var newrot = Vector3(0,1,0)
+	var rez = OS.get_window_size()[0]/1000
 	var speed = (Input.get_mouse_speed()[0] * (Sensitivity/rez))/360
 	#print(speed)
 	if e.type == InputEvent.MOUSE_MOTION:
-		Target.rotate_y(speed)
+		Target.rotate_y(deg2rad(speed))
 	pass
 	
 func cam_rot(e, Target, Sensitivity, RotRange):

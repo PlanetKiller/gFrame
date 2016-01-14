@@ -1,6 +1,10 @@
 
 extends Node
 
+#PlantKiller 1-12-2016 Items module
+# handles inventory creation and item adding
+# please use name/amount pairs
+
 # member variables here, example:
 # var a=2
 # var b="textvar"
@@ -96,7 +100,7 @@ func add_stack(Name, Amount):
 				Inventory[i] = [Name, Amount]
 				isMT = true
 				break
-				
+	return isMT
 	pass
 	
 	
@@ -104,14 +108,15 @@ func add_nostack(Name, Amount):
 	var Keys = Inventory.keys()
 	Keys.sort()
 	var isMT = false
-	print(Keys)
+	#print(Keys)
 	for i in Keys:
-		print(i)
+		#print(i)
 		
 		if(Inventory[i] == null and !isMT):
 			Inventory[i] = [Name, Amount]
 			isMT = true
 			break
+	return isMT
 	pass
 
 

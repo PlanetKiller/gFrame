@@ -1,5 +1,5 @@
 
-extends KinematicBody
+extends RigidBody
 
 # member variables here, example:
 # var a=2
@@ -15,8 +15,9 @@ func _fixed_process(delta):
 	gmove.line_move_aug(self, "cont_left", Vector3(-1,0,0))
 	gmove.line_move_aug(self, "cont_right", Vector3(1,0,0))
 	#move(Vector3(0,0,-5))
-	gmove.jump_aug(JumpRay, self, 10, "cont_jump")
-	gmove.fall(JumpRay, self, .008)
+	#gmove.jump_aug(JumpRay, self, 10, "cont_jump")
+	gmove.rigid_jump(self, 10, "cont_jump")
+	#gmove.fall(JumpRay, self, .008)
 	pass
 	
 func _input(event):
@@ -34,5 +35,8 @@ func _ready():
 	gitems.gen_inv(5)
 	# Initialization here
 	pass
+
+
+
 
 

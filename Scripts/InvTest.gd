@@ -6,6 +6,7 @@ extends CanvasItem
 # var b="textvar"
 var gItems
 var Sprites
+var ButtZero
 
 func set_buttons():
 	var Item
@@ -19,15 +20,21 @@ func set_buttons():
 				
 
 		
+func _fixed_process(delta):
+	#print(ButtZero.is_pressed())
+	pass
 
 func _ready():
 	gItems = get_node("/root/gItems")
+	ButtZero = get_node("Item0")
+	#print(ButtZero.is_pressed())
 	gItems.gen_inv(6)
 	Sprites = get_node("Sprites")
 	gItems.set_inv_item("Item0",["Blade",1])
 	gItems.set_inv_item("Item1",["Bread",10])
 	#set_text("100")
 	set_buttons()
+	set_fixed_process(true)
 	# Initialization here
 	pass
 
